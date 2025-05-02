@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0b0c2a;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .envelope {
+      width: 180px;
+      height: 120px;
+      background: #ffc0cb;
+      border-radius: 8px;
+      position: relative;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+    }
+
+    .envelope::before {
+      content: "TAP ME";
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      font-size: 18px;
+      color: #0b0c2a;
+    }
+
+    .letter {
+      display: none;
+      background: white;
+      color: #333;
+      padding: 20px;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .show {
+      display: block;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="envelope" onclick="showLetter()"></div>
+  <div class="letter" id="letter">
+    <h2>MY LOVE</h2>
+    <p>This is where your beautiful letter will appear. You can write anything you want here.</p>
+    <p>Happy 1st Month!</p>
+  </div>
+</div>
+
+<script>
+  function showLetter() {
+    document.querySelector('.envelope').style.display = 'none';
+    document.getElementById('letter').classList.add('show');
+  }
+</script>
+
+</body>
+</html>
