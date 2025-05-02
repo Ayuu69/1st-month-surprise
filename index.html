@@ -2,89 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Izna</title>
   <style>
-    body {
+    * {
       margin: 0;
-      background-color: #0b0c2a;
-      font-family: 'Arial', sans-serif;
-      overflow: hidden;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .container {
+    body {
+      background-color: #0b0c2a;
       display: flex;
-      height: 100vh;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      position: relative;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      color: #fff;
     }
 
-    .envelope {
-      width: 180px;
-      height: 120px;
-      background: #ffc0cb;
-      border-radius: 8px;
+    .wrapper {
       position: relative;
+      width: 350px;
+      height: 450px;
       cursor: pointer;
-      animation: bounce 2s infinite;
+      perspective: 1000px;
     }
 
-    .envelope::before {
-      content: "TAP ME";
+    .ribbon-container {
       position: absolute;
-      top: 35%;
+      top: 15%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      font-weight: bold;
-      font-size: 18px;
-      color: #0b0c2a;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
     }
 
-    .letter {
-      display: none;
-      background: white;
-      color: #333;
-      padding: 20px;
-      max-width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    .ribbon {
+      background-color: #ff69b4;
+      width: 250px;
+      height: 40px;
+      border-radius: 25px;
+      position: relative;
       text-align: center;
-      animation: fadeIn 1s ease forwards;
+      line-height: 40px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 1s ease-out;
     }
 
-    .show {
-      display: block;
+    .ribbon-text {
+      position: relative;
+      z-index: 10;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .ribbon-open {
+      transform: translateY(-50px);
     }
 
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .letter-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 1s ease-out;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      z-index: 5;
     }
+
+    .letter-container h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      color: #0b0c2a;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .letter-container p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #0b0c2a;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    .letter-open {
+      opacity: 1;
+      transform: scale(1);
+    }
+
   </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="envelope" onclick="showLetter()"></div>
-  <div class="letter" id="letter">
-    <h2>MY LOVE</h2>
-    <p>This is where your beautiful letter will appear. You can write anything you want here.</p>
-    <p>Happy 1st Month!</p>
-  </div>
-</div>
+  <div class="wrapper" onclick="revealLetter()">
+    <!-- Ribbon Container -->
+    <div class="ribbon-container">
+      <div class="ribbon">
+        <span class="ribbon-text">TAP ME</span>
+      </div>
+    </div>
 
-<script>
-  function showLetter() {
-    document.querySelector('.envelope').style.display = 'none';
-    document.getElementById('letter').classList.add('show');
-  }
-</script>
+    <!-- Letter -->
+    <div class="letter-container">
+      <h2>For Izna</h2>
+      <p>My love,</p>
+      <p>This is a small surprise for you, just to show you how much you mean to me.</p>
+      <p>Every moment spent with you has been my happiest, and I can't wait for many more to come.</p>
+      <p>Happy 1st month anniversary. Here's to forever together.</p>
+      <p>With all my love, <br>Your [Your Name]</p>
+    </div>
+  </div>
+
+  <script>
+    function revealLetter() {
+      // Trigger ribbon and letter animation
+      document.querySelector('.ribbon').classList.add('ribbon-open');
+      document.querySelector('.letter-container').classList.add('letter-open');
+    }
+  </script>
 
 </body>
 </html>
